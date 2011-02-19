@@ -3,6 +3,17 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
+    @submit_user = {
+      :email => 'functional@test.org',
+      :password => 'password',
+      :password_confirmation => 'password',
+      :user_type => 'admin'
+    }
+    
+    @edit_user = User.create!(@submit_user) # The "!" is so that this test exits if this fails.
+    @edit_user.password = nil
+    @edit_user.password_confirmation = nil
+    @edit_user.user_type = 'user'
   end
 
   test "should get index" do
@@ -18,7 +29,8 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, :user => @user.attributes
+      @submit_user['email'] = 'changed@functional-test.org' # Needs this change because email is unique
+      post :create, :user => @submit_user
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -35,7 +47,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, :id => @user.to_param, :user => @user.attributes
+    put :update, :id => @edit_user.to_param, :user => @edit_user.attributes
     assert_redirected_to user_path(assigns(:user))
   end
 
