@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyText
+  unit_cost: 9.99
+  quantity: 1
+  discount: 0
+  invoice: one
+  

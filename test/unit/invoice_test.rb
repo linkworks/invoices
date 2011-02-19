@@ -6,7 +6,8 @@ class InvoiceTest < ActiveSupport::TestCase
       :terms => 'Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.',
       :notes => 'Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.',
       :status => 'draft',
-      :client_id => clients(:one).id
+      :client_id => clients(:one).id,
+      :items => [items(:one)] # This is a dirty fix :D
     }
   end
   
@@ -43,5 +44,12 @@ class InvoiceTest < ActiveSupport::TestCase
     
     invoice.status = nil
     assert invoice.invalid?, "should accept blank status"
+  end
+  
+  test "should have at least one item" do
+    invoice = Invoice.new(@invoice)
+    invoice.items = []
+    
+    assert invoice.invalid?
   end
 end
