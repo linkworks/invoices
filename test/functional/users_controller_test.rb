@@ -7,7 +7,8 @@ class UsersControllerTest < ActionController::TestCase
       :email => 'functional@test.org',
       :password => 'password',
       :password_confirmation => 'password',
-      :user_type => 'admin'
+      :user_type => 'admin',
+      :company_id => companies(:one).id
     }
     
     @edit_user = User.create!(@submit_user) # The "!" is so that this test exits if this fails.

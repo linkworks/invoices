@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => 'must be valid email'
   validates :password, :confirmation => true
   validates :user_type, :presence => true, :inclusion => { :in => ['admin', 'user'] }
+  validates :company_id, :presence => true
+  
+  belongs_to :company
   
   attr_accessor :password_confirmation 
   attr_reader :password
