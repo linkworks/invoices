@@ -35,7 +35,6 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "should not create user without password confirmation" do
-    # FIXME: I have no idea why this test does not pass.
     user = User.new(@user)
     user.password_confirmation = ''
     assert user.invalid?

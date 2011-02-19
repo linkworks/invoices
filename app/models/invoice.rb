@@ -1,4 +1,6 @@
 class Invoice < ActiveRecord::Base
+  # TODO: Add tax info to invoice
+  
   validates :client_id, :presence => true
   validates :status, :inclusion => { :in => ['draft', 'sent', 'paid'] }
   
