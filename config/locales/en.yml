@@ -2,4 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  users:
+    form:
+      email:                  Email
+      password:               Password
+      password_confirmation:  Confirm Password
+      user_type:              User Type
+      admin:                  Administrator
+      user:                   User
+      select:                 (select...)
+      company:                Company
+      create_user:            Create user
+      
