@@ -69,15 +69,12 @@ class UserTest < ActiveSupport::TestCase
   test "should not create user without valid email" do
     user = User.new(@user)
     
-    valid_emails = %w{email@example.org email@example.com email@with.subdomain.com email.with.dots@example.com emailwith+plus@domain.cl email.withdots+andplus@example.com}
-    invalid_emails = %w{@example.com justaword domain.com  commas,yeah@email.org something@}
-    
-    valid_emails.each do |email|
+    @valid_emails.each do |email|
       user.email = email
       assert user.valid?, "#{email} should be valid"
     end
     
-    invalid_emails.each do |email|
+    @invalid_emails.each do |email|
       user.email = email
       assert user.invalid?, "#{email} should be invalid"
     end

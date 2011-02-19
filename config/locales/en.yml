@@ -13,4 +13,12 @@ en:
       select:                 (select...)
       company:                Company
       create_user:            Create user
-      
+  clients:
+    form:
+      select: '(select...)'
+      name:   'Name'
+      email:  'Email Address'
+      address: 'Address'
+      company_name: 'Company Name'
+      company: 'Company'
+      save_client: 'Save Client'

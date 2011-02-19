@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Javier
+  email: email@company-fixture.org
+  address: 123 Park Ave.
+  company_name: Incorporated Inc.
+  company: one
