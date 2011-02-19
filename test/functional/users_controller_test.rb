@@ -23,7 +23,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
-  test "should get new" do
+  test "should get new only if there are companies in db" do
+    assert !Company.all.empty?, "There should be companies in db to execute this test"
     get :new
     assert_response :success
   end
