@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% SALT = 'NaCl' %>
+
+one:
+  email: test@fixture.org
+  hashed_password: <%= User.encrypt_password('password', SALT) %>
+  password_salt: <%= SALT %>
+  user_type: admin
+  #company_id: 1
