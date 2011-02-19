@@ -22,3 +22,9 @@ en:
       company_name: 'Company Name'
       company: 'Company'
       save_client: 'Save Client'
+  invoices:
+    form:
+      select: '(select...)'
+      draft: 'Draft'
+      sent: 'Sent'
+      paid: 'Paid'

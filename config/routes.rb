@@ -1,4 +1,6 @@
 Invoices::Application.routes.draw do
+  resources :invoices
+
   resources :clients
 
   resources :companies

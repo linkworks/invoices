@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  notes: Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit.
+  terms: Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat.
+  status: draft
+  client: one

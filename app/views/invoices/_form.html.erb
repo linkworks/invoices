@@ -1,0 +1,33 @@
+<%= form_for(@invoice) do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes, :rows => 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :terms %><br />
+    <%= f.text_area :terms, :rows => 5 %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, ['draft', 'sent', 'paid'].collect { |s| [t('.'+s), s] }, :prompt => t('.select') %>
+  </div>
+  <div class="field">
+    <%= f.label :client_id %><br />
+    <%= f.select :client_id, options_from_collection_for_select(Client.all, :id, :name), :prompt => t('.select') %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
