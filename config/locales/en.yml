@@ -11,7 +11,7 @@ en:
       logout: Logout
       currently_logged_in_as: You're currently logged in as
       not_you: not you?
-      confirm_not_you: This will log you out and ask you to login again, are your sure?
+      confirm_not_you: This will log you out and ask you to login again, are you sure?
       confirm_logout: Are you sure?
       
   users:
