@@ -26,9 +26,10 @@
 
   <ul id="navigation">
     <% if signed_in? %>
-      <li><span class="active">Dashboard</span></li>
-      <li><a href="#">Invoices (1)</a></li>
-      <li><a href="#">Clients</a></li>
+      <li> <%= link_to t('.new_invoice'), new_invoice_path, :class => 'active' %> </li>
+    
+      <li> <%= link_to t('.invoices'), invoices_path %> </li>
+      <li> <%= link_to t('.clients'), clients_path %> </li>
       
       <li class="right"> <%= link_to t('.logout'), logout_path, :method => :delete, :confirm => t('.confirm_logout') %> </li>
       <li class="right"><a href="#">Settings</a></li>

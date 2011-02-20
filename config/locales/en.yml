@@ -14,6 +14,10 @@ en:
       confirm_not_you: This will log you out and ask you to login again, are you sure?
       confirm_logout: Are you sure?
       
+      invoices: Invoices
+      new_invoice: + New Invoice
+      clients: Clients
+      
   users:
     form:
       email:                  Email
