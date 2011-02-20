@@ -2,13 +2,153 @@
 <html>
 <head>
   <title>Invoices</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+  
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+  
+  <style type="text/css" media="screen">
+    /* http://colorschemedesigner.com/#0M21O99ttvyw0 */
+    /*
+    Primary Color:
+    EBD0A8	B1A28B	9A7238	F5E0C0	F5E5CE
+    Complementary Color:
+    708499	5C6773	254464	A4B7CC	AEBDCC
+    */
+    
+    body
+    {
+      font-family: 'lucida grande';
+    }
+    
+    .clear
+    {
+      clear: both;
+    }
+    
+    #header
+    {
+      height: 70px;
+      background: #EBD0A8;
+      
+      background: #9A7238; /* old browsers */
+      background: -moz-linear-gradient(top, #9A7238 0%, #EBD0A8 100%); /* firefox */
+
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9A7238), color-stop(100%,#EBD0A8)); /* webkit */
+
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9A7238', endColorstr='#EBD0A8',GradientType=0 ); /* ie */
+      
+      -webkit-box-shadow: 0px 0px 10px #666;
+      -moz-box-shadow: 0px 0px 10px #666;
+      box-shadow: 0px 0px 10px #666;
+    }
+    
+    #header h1
+    {
+      font-size: 25px;
+      font-weight: bold;
+      color: #000;
+      padding: 10px;
+    }
+    
+    #header ul.menu
+    {
+      padding-top: 8px;
+    }
+    
+    #header ul.menu li
+    {
+      float: left;
+      background: #386226;
+      border: 0;
+      margin: 0 5px;
+      padding: 3px;
+      
+      -moz-border-radius-topleft: 5px;
+      -moz-border-radius-topright: 5px;
+      -moz-border-radius-bottomright: 0px;
+      -moz-border-radius-bottomleft: 0px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    
+    #header ul.menu li.right
+    {
+      float:right;
+    }
+    
+    #header ul.menu li:hover
+    {
+      /*background: #708499;*/
+      -webkit-box-shadow: 0px 0px 15px #fff;
+      -moz-box-shadow: 0px 0px 15px #fff;
+      box-shadow: 0px 0px 15px #fff;
+    }
+    
+    #header ul.menu li a:link 
+    {
+      padding: 5px 10px;
+    }
+    
+    #header ul.menu li:hover a:link
+    {
+      text-decoration: underline;
+    }
+    
+    #header ul.menu li.active a
+    {
+      font-weight: bold;
+    }
+    
+    #header ul.menu li a:link,
+    #header ul.menu li a:active, 
+    #header ul.menu li a:visited
+    {
+      text-decoration: none;
+      /*font-weight: bold;*/
+      background: none;
+      color: #FFF;
+    }
+    
+    #breadcrumbs
+    {
+      padding: 5px 10px;
+      
+      border-top: 1px solid #845228;
+      
+      background: #9A7238; /* old browsers */
+      background: -moz-linear-gradient(top, #9A7238 0%, #EBD0A8 100%); /* firefox */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9A7238), color-stop(100%,#EBD0A8)); /* webkit */
+
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9A7238', endColorstr='#EBD0A8',GradientType=0 ); /* ie */
+    }
+  </style>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="container">
+    <div id="header">
+      <h1> Invoices </h1>
+      
+      <ul class="menu">
+        <li class="active"><a href="#"> Dashboard </a></li>
+        <li><a href="#"> Invoices </a></li>
+        <li><a href="#"> Clients </a></li>
+        
+        <li class="right"><a href="#"> Logout </a></li>
+        <li class="right"><a href="#"> Settings </a></li>
+      </ul>
+    </div>
+    
+    <div id="breadcrumbs">
+      Invoices &rarr; New Invoice
+    </div>
+    
+    <div id="content">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
