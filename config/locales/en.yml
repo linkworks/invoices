@@ -12,7 +12,7 @@ en:
       user:                   User
       select:                 (select...)
       company:                Company
-      create_user:            Create user
+      save_user:              Save user
   clients:
     form:
       select: '(select...)'

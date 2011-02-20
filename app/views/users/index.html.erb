@@ -1,25 +1,35 @@
 <h1>Listing users</h1>
 
 <table>
-  <tr>
-    <th>Email</th>
-    <th>User Type</th>
-    <th>Company</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= user.user_type %></td>
-    <td><%= user.company_id %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>User Type</th>
+      <th>Company</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  
+  <!--<tfoot>
+    <tr>
+      <td colspan="5" class="pagination">
+        <span class="active curved">1</span><a href="#" class="curved">2</a><a href="#" class="curved">3</a><a href="#" class="curved">4</a> ... <a href="#" class="curved">10 million</a>
+      </td>
+    </tr>
+  </tfoot>-->
+  
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.user_type %></td>
+      <td><%= user.company_id %></td>
+      <td><%= link_to 'Show', user %>
+      <%= link_to 'Edit', edit_user_path(user) %>
+      <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
 <br />

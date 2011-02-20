@@ -2,13 +2,29 @@
 <html>
 <head>
   <title>Invoices</title>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag ['960', 'template', 'colour'] %><!-- :all -->
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <h1 id="head"> Invoices </h1>
 
-<%= yield %>
+  <ul id="navigation">
+    <li><span class="active">Dashboard</span></li>
+    <li><a href="#">Invoices (1)</a></li>
+    <li><a href="#">Clients</a></li>
+    
+    <li class="right"><a href="#">Logout</a></li>
+    <li class="right"><a href="#">Settings</a></li>
+  </ul>
+  
+  <div id="content" class="container_16 clearfix">
+    <%= yield %>
+  </div>
+  
+  <div id="foot">
+    Open Source Invoicing Powered by <strong>Invoices</strong>
+  </div>
 
 </body>
 </html>

@@ -1,37 +1,45 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
+    <div id="error_explanation" class="grid_16">
       <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <p class="error"><%= msg %></p>
       <% end %>
-      </ul>
     </div>
+    <div class="grid_16"><p><!-- SEPARATOR --></p></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email, t('.email') %><br />
-    <%= f.text_field :email %>
+  <div class="grid_5">
+      <%= f.label :email, t('.email') %>
+      <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :password, t('.password') %><br />
-    <%= f.password_field :password %>
+  
+  <div class="grid_5">
+      <%= f.label :password, t('.password') %>
+      <%= f.password_field :password %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation, t('.password_confirmation') %><br />
-    <%= f.password_field :password_confirmation %>
+  
+  <div class="grid_6">
+      <%= f.label :password_confirmation, t('.password_confirmation') %>
+      <%= f.password_field :password_confirmation %>
   </div>
-  <div class="field">
-    <%= f.label :user_type, t('.user_type') %><br />
-    <%= f.select :user_type, [[t('.admin'), 'admin'], [t('.user'), 'user']], :prompt => t('.select') %>
+  
+  <div class="grid_16"><p><!-- SEPARATOR --></p></div>
+  
+  <div class="grid_8">
+      <%= f.label :user_type, t('.user_type') %>
+      <%= f.select :user_type, [[t('.admin'), 'admin'], [t('.user'), 'user']], :prompt => t('.select') %>
   </div>
-  <div class="field">
-    <%= f.label :company_id, t('.company') %><br />
-    <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), :prompt => t('.select') %>
+  
+  <div class="grid_8">
+      <%= f.label :company_id, t('.company') %>
+      <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), :prompt => t('.select') %>
   </div>
-  <div class="actions">
-    <%= f.submit t('.create_user') %>
+  
+  <div class="grid_16"><p><!-- SEPARATOR --></p></div>
+  
+  <div class="grid_16">
+    <p class="submit">
+      <%= f.submit t('.save_user') %>
+    </p>
   </div>
 <% end %>
