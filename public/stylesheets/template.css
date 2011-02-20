@@ -130,6 +130,14 @@ th, td {
 	
 }
 
+#head .right
+{
+  font-size: 13px;
+  float: right;
+  line-height: 39px;
+  font-weight: normal;
+}
+
 /* Nagivation */
 
 #navigation {
