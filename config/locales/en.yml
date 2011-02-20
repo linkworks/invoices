@@ -4,6 +4,7 @@
 en:
   login_message: You've been logged in. Welcome back!
   logout_message: You've been logged out. See ya!
+  need_to_be_logged_in: You need to be logged in.
   
   layouts:
     application:

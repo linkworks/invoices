@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
       self.hashed_password = self.class.encrypt_password(password, password_salt)
     end 
   end
+  
+  def admin?
+    user_type == 'admin'
+  end
 
   private
     def password_must_be_present 

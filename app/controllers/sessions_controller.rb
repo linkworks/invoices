@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :authorize, :except => :destroy
+  
   # GET /login
   def new
   end
