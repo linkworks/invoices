@@ -1,4 +1,10 @@
 Invoices::Application.routes.draw do
+  controller :sessions do
+    get "login", :action => :new, :as => :show_login
+    post "login", :action => :create, :as => :do_login
+    delete "logout", :action => :destroy, :as => :logout
+  end
+
   resources :invoices
 
   resources :clients

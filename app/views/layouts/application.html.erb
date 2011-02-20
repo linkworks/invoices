@@ -14,7 +14,11 @@
     <li><a href="#">Invoices (1)</a></li>
     <li><a href="#">Clients</a></li>
     
-    <li class="right"><a href="#">Logout</a></li>
+    <% if signed_in? %>
+      <li class="right"> <%= link_to t('.logout'), logout_path, :method => :delete %> </li>
+    <% else %>
+      <li class="right"> <%= link_to t('.login'), show_login_path %> </li>
+    <% end %>
     <li class="right"><a href="#">Settings</a></li>
   </ul>
   

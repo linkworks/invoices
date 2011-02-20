@@ -2,6 +2,10 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  layouts:
+    application:
+      login: Login
+      logout: Logout
   users:
     form:
       email:                  Email
@@ -28,3 +32,12 @@ en:
       draft: 'Draft'
       sent: 'Sent'
       paid: 'Paid'
+  sessions:
+    new:
+      login: Login
+      email: Email
+      password: Password
+      submit: Login
+      recover_password: Forgot your password?
+      sign_up: Sign up
+      login_error_message: Invalid email or password. Try again.
