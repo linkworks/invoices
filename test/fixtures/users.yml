@@ -8,3 +8,15 @@ one:
   password_salt: <%= SALT %>
   user_type: admin
   #company_id: 1
+
+admin_user:
+  email: the.admin@adminworld.org
+  hashed_password: <%= User.encrypt_password('password', SALT) %>
+  password_salt: <%= SALT %>
+  user_type: admin
+
+normal_user:
+  email: the.user@userworld.org
+  hashed_password: <%= User.encrypt_password('password', SALT) %>
+  password_salt: <%= SALT %>
+  user_type: user

@@ -14,4 +14,12 @@ class ActiveSupport::TestCase
     @valid_emails = %w{email@example.org email@example.com email@with.subdomain.com email.with.dots@example.com emailwith+plus@domain.cl email.withdots+andplus@example.com}
     @invalid_emails = %w{@example.com justaword domain.com  commas,yeah@email.org something@}
   end
+  
+  def login(user)
+    session[:user_id] = users(user).id
+  end
+  
+  def logout
+    session[:user_id] = nil
+  end
 end
