@@ -1,0 +1,10 @@
+#messages p
+{
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#messages p.alert { color: red; }
+#messages p.notice { color: green; }

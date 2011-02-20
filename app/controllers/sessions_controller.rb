@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     if @current_user = User.authenticate(params[:email], params[:password])
       session[:user_id] = @current_user.id
-      redirect_to users_path
+      redirect_to users_path, :notice => t('.login_message')
     else
       @login_error = true
       respond_to do |format|
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   # DELETE /logout
   def destroy
     session[:user_id] = nil
-    redirect_to show_login_path
+    redirect_to show_login_path, :notice => t('.logout_message')
   end
 
 end
