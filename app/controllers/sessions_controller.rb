@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     if @current_user = User.authenticate(params[:email], params[:password])
       session[:user_id] = @current_user.id
-      redirect_to users_path, :notice => t('.login_message')
+      redirect_to invoices_path, :notice => t('.login_message')
     else
       @login_error = true
       respond_to do |format|
