@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   
   # GET /login
   def new
+    redirect_to invoices_path if signed_in?
   end
   
   # POST /login
