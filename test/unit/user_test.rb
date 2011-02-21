@@ -26,6 +26,12 @@ class UserTest < ActiveSupport::TestCase
     assert user.invalid?
   end
   
+  test "should not create duplicate user with same email" do
+    user = User.create(@user)
+    user_2 = User.new(@user)
+    assert user_2.invalid?
+  end
+  
   test "should not create user without password" do
     user = User.new(user_without [:password, :password_confirmation])
     assert user.invalid?

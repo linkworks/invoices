@@ -24,6 +24,10 @@ protected
     redirect_to show_login_path, :alert => t('.need_to_be_logged_in') unless signed_in?
   end
   
+  def require_signed_out
+    redirect_to invoices_path, :alert => t('.already_signed_in') if signed_in?
+  end
+  
   # TODO: This method should blackhole if the user is not signed in as well.
   def require_admin
     if signed_in? and !current_user.admin?

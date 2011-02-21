@@ -5,10 +5,28 @@ en:
   login_message: You've been logged in. Welcome back!
   logout_message: You've been logged out. See ya!
   need_to_be_logged_in: You need to be logged in.
+  sign_up_success: You've successfully signed up! You can now login.
+  already_signed_in: You're already signed in.
+  
+  activerecord:
+    models:
+      company: Company
+      user: User
+    attributes:
+      company:
+        name: Company Name
+    errors:
+      models:
+        company:
+          attributes:
+            name:
+              #blank: can't be blank
+  
   
   layouts:
     application:
       login: Login
+      sign_up: Sign Up
       logout: Logout
       currently_logged_in_as: You're currently logged in as
       not_you: not you?
@@ -30,6 +48,16 @@ en:
       select:                 (select...)
       company:                Company
       save_user:              Save user
+    sign_up:
+      sign_up: Sign Up
+      email_html: Email
+      password_html: Password
+      password_confirmation_html: Confirm your password
+      company_name_html: Company name
+      company_address_html: Address <small>(not required)</small>
+      sign_up: Sign Up
+      login: Do you want to login instead?
+  
   clients:
     form:
       select: (select...)
@@ -39,6 +67,7 @@ en:
       company_name: Company Name
       company: Company
       save_client: Save Client
+  
   invoices:
     form:
       select: (select...)

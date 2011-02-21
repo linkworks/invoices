@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_admin
+  skip_before_filter :authorize, :only => [:sign_up, :public_create]
+  before_filter :require_admin, :except => [:sign_up, :public_create]
+  before_filter :require_signed_out, :only => [:sign_up, :public_create]
   
   # GET /users
   # GET /users.xml
@@ -84,6 +86,40 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  # GET /sign_up
+  def sign_up
+    @user = User.new
+    @company = Company.new
+  end
+  
+  # POST /sign_up
+  def public_create
+    @company = Company.new({:name => params[:company_name], :address => params[:company_address]})
+    @user = User.new({
+      :email => params[:email],
+      :password => params[:password],
+      :password_confirmation => params[:password_confirmation],
+      :user_type => 'user' # Important that this is user
+    })
+    
+    User.transaction do
+      @user.save!
+      @company.save!
+      
+      @user.company_id = @company.id
+      @user.save!
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to show_login_path, :notice => t('.sign_up_success') }
+    end
+    
+  rescue ActiveRecord::RecordInvalid => invalid # Meaning something was not filled correctly in form
+    respond_to do |format|
+      format.html { render :action => :sign_up }
     end
   end
 end

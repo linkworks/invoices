@@ -84,4 +84,24 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to users_path
   end
+  
+  test "should not sign up if logged in" do
+    login(:normal_user)
+    get :sign_up
+    assert_redirected_to invoices_path
+  end
+  
+  test "should get sign up" do
+    logout # Make sure we are not logged in
+    
+    get :sign_up
+    assert_response :success
+  end
+  
+  test "should sign up" do
+    logout
+    
+    post :public_create, :email => 'functional1234@signup.com', :password => 'password', :password_confirmation => 'password', :company_name => 'Company', :company_address => 'Address'
+    assert_redirected_to show_login_path
+  end
 end

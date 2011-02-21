@@ -1,11 +1,11 @@
 require 'digest/sha2'
 
 class User < ActiveRecord::Base
-  validates :email, :presence => true, :uniqueness => true
-  validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => 'must be valid email'
+  validates :email, :uniqueness => true
+  validates :email, :format => { :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => 'must be valid' }
   validates :password, :confirmation => true
   validates :user_type, :presence => true, :inclusion => { :in => ['admin', 'user'] }
-  validates :company_id, :presence => true
+  #validates :company_id, :presence => true
   
   belongs_to :company
   

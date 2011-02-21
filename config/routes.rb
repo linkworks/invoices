@@ -12,6 +12,10 @@ Invoices::Application.routes.draw do
   resources :companies
 
   resources :users
+  controller :users do
+    get "sign_up", :action => :sign_up, :as => :sign_up
+    post "sign_up", :action => :public_create, :as => :public_user_create
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
