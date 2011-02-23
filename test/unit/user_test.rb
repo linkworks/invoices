@@ -85,4 +85,19 @@ class UserTest < ActiveSupport::TestCase
       assert user.invalid?, "#{email} should be invalid"
     end
   end
+  
+  test "should authenticate user with correct password" do
+    auth = User.authenticate(users(:one).email, 'password')
+    assert_equal auth.id, users(:one).id
+  end
+  
+  test "should not authenticate user with incorrect password" do
+    auth = User.authenticate(users(:one).email, 'incorr3ct!')
+    assert !auth
+  end
+  
+  test "should authenticate user with remember cookie" do
+    auth = User.authenticate_from_cookie(users(:one).id, users(:one).remember_key)
+    assert_equal auth.id, users(:one).id
+  end
 end

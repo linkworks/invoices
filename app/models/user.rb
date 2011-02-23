@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
       end
     end
     
+    def authenticate_from_cookie(id, remember_key)
+      if user = find(id) and user.remember_key == remember_key
+        user
+      end
+    end
+    
     def encrypt_password(password, password_salt) 
       Digest::SHA2.hexdigest(password + "cb093478n0f3smh" + password_salt) # Something random
     end 
@@ -41,6 +47,10 @@ class User < ActiveRecord::Base
   
   def admin?
     user_type == 'admin'
+  end
+  
+  def remember_key
+    Digest::SHA2.hexdigest(self.email + self.hashed_password)
   end
 
   private
