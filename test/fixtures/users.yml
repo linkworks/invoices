@@ -20,3 +20,4 @@ normal_user:
   hashed_password: <%= User.encrypt_password('password', SALT) %>
   password_salt: <%= SALT %>
   user_type: user
+  company: one

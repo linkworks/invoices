@@ -2,7 +2,8 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.xml
   def index
-    @invoices = Invoice.all
+    #@invoices = Invoice.all
+    @invoices = Invoice.where('client_id in (?)', current_user.company.clients.all.collect(&:id))
 
     respond_to do |format|
       format.html # index.html.erb

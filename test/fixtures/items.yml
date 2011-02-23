@@ -2,8 +2,8 @@
 
 one:
   description: MyText
-  unit_cost: 9.99
-  quantity: 1
+  unit_cost: 1000
+  quantity: 2
   discount: 0
   invoice: one
   

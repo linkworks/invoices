@@ -74,6 +74,17 @@ en:
       draft: Draft
       sent: Sent
       paid: Paid
+    index:
+      id: ID
+      client: Client
+      amount: Amount
+      status: Status
+      draft: Draft
+      paid: Paid
+      sent: Sent
+      date_created: Date of Creation
+      actions: Actions
+    
   sessions:
     new:
       login: Login

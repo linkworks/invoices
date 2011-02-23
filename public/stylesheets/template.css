@@ -257,3 +257,32 @@ input[type="submit"], input[type="reset"] {
 	margin:0 2px;
 	padding:2px 6px;
 }
+
+/* Invoices */
+.invoice-status
+{
+  font-weight: bold;
+}
+
+.invoice-status-draft { color: orange; }
+.invoice-status-sent { color: gray; }
+.invoice-status-paid { color: green; }
+
+/* Tables */
+td.align-right,
+th.align-right
+{
+  text-align: right;
+}
+
+td.align-left,
+th.align-left
+{
+  text-align: left;
+}
+
+td.align-center,
+th.align-center
+{
+  text-align: center;
+}

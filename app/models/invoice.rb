@@ -4,12 +4,21 @@ class Invoice < ActiveRecord::Base
   validates :client_id, :presence => true
   validates :status, :inclusion => { :in => ['draft', 'sent', 'paid'] }
   
-  validate :at_least_one_item
+  #validate :at_least_one_item
   
   belongs_to :client
   has_many :items
   
   def at_least_one_item
     self.errors.add(:items, "Invoice should have at least one item.") if self.items.empty?
+  end
+  
+  def total  
+    @total = 0
+    self.items.each do |item|
+      @total += item.total_price
+    end
+    
+    @total
   end
 end

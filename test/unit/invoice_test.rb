@@ -46,10 +46,15 @@ class InvoiceTest < ActiveSupport::TestCase
     assert invoice.invalid?, "should accept blank status"
   end
   
-  test "should have at least one item" do
-    invoice = Invoice.new(@invoice)
-    invoice.items = []
-    
-    assert invoice.invalid?
+  # Deprecated test
+  #test "should have at least one item" do
+  #  invoice = Invoice.new(@invoice)
+  #  invoice.items = []
+  #  
+  #  assert invoice.invalid?
+  #end
+  
+  test "should return total" do
+    assert_equal items(:one).total_price, invoices(:one).total
   end
 end

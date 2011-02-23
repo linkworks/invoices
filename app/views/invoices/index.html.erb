@@ -2,24 +2,28 @@
 
 <table>
   <tr>
-    <th>Notes</th>
-    <th>Terms</th>
-    <th>Status</th>
-    <th>Client</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th><%= t('.id') %></th>
+    <th><%= t('.client') %></th>
+    <th><%= t('.status') %></th>
+    <th><%= t('.amount') %></th>
+    <th><%= t('.date_created') %></th>
+    <th><%= t('.actions') %></th>
   </tr>
 
 <% @invoices.each do |invoice| %>
   <tr>
-    <td><%= invoice.notes %></td>
-    <td><%= invoice.terms %></td>
-    <td><%= invoice.status %></td>
-    <td><%= invoice.client_id %></td>
-    <td><%= link_to 'Show', invoice %></td>
-    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
-    <td><%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="align-right"><%= invoice.id %></td>
+    <td><%= link_to invoice.client.name, client_path(invoice.client) %> (<%= mail_to invoice.client.email, 'Email' %>)</td>
+    <td class="invoice-status invoice-status-<%= invoice.status %>">
+      <%= t('.' + invoice.status) %>
+    </td>
+    <td class="align-right"><%= number_to_currency invoice.total %></td>
+    <td><%= l(invoice.created_at, :format => :short) %>
+    <td>
+      <%= link_to 'Show', invoice %>
+      <%= link_to 'Edit', edit_invoice_path(invoice) %>
+      <%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
