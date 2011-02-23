@@ -1,14 +1,25 @@
 <h1>Listing invoices</h1>
 
 <table>
-  <tr>
-    <th><%= t('.id') %></th>
-    <th><%= t('.client') %></th>
-    <th><%= t('.status') %></th>
-    <th><%= t('.amount') %></th>
-    <th><%= t('.date_created') %></th>
-    <th><%= t('.actions') %></th>
-  </tr>
+  <thead>
+    <tr>
+      <th><%= t('.id') %></th>
+      <th><%= t('.client') %></th>
+      <th><%= t('.status') %></th>
+      <th><%= t('.amount') %></th>
+      <th><%= t('.date_created') %></th>
+      <th><%= t('.actions') %></th>
+    </tr>
+  </thead>
+  
+  <tfoot>
+    <tr>
+      <td colspan="5" class="pagination">
+        <%= will_paginate @invoices %>
+      </td>
+    </tr>
+  </tfoot>
+  
 
 <% @invoices.each do |invoice| %>
   <tr>
