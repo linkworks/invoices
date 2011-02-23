@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   address: MyString
+
+acme:
+  name: Acme Inc.
+  address: 3.14 Pi Street

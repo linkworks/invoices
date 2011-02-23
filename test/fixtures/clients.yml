@@ -6,3 +6,10 @@ one:
   address: 123 Park Ave.
   company_name: Incorporated Inc.
   company: one
+
+acme:
+  name: Acme Client
+  email: acme-client@clientworld.org
+  address: 123 Acme Client Ave.
+  company_name: Acme Client Inc.
+  company: acme

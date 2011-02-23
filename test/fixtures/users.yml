@@ -21,3 +21,10 @@ normal_user:
   password_salt: <%= SALT %>
   user_type: user
   company: one
+
+acme:
+  email: acme@acme.com
+  hashed_password: <%= User.encrypt_password('password', SALT) %>
+  password_salt: <%= SALT %>
+  user_type: user
+  company: acme
