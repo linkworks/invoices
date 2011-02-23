@@ -250,12 +250,34 @@ input[type="submit"], input[type="reset"] {
 
 /* Pagination */
 .pagination {
-	text-align:right;
+	text-align:center;
 }
+
+.pagination em {
+  color: white;
+  background: #434A48;
+  display:inline-block;
+	margin:0 2px;
+	padding:2px 6px;
+  font-style: normal;
+  font-weight: bold;
+  -moz-border-radius-bottomleft:5px;
+	-moz-border-radius-topright:5px;
+	border-bottom-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
 .pagination a, .pagination span {
 	display:inline-block;
 	margin:0 2px;
 	padding:2px 6px;
+}
+
+.pagination a:hover {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-topright:5px;
+	border-bottom-left-radius:5px;
+	border-top-right-radius:5px;
 }
 
 /* Invoices */
