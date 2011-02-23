@@ -94,3 +94,4 @@ en:
       recover_password: Forgot your password?
       sign_up: Sign up
       login_error_message: Invalid email or password. Try again.
+      remember_me: Remember me

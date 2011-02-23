@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authorize
+  before_filter :authorize, :login_from_cookie
   
   def current_user
     if session[:user_id]
@@ -18,6 +18,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in? # This makes these methods available in views
   
 protected
+  
+  def login_from_cookie
+    unless signed_in?
+      id = cookies.signed[:remember_id]
+      key = cookies.signed[:remember_key]
+      if id and key and user = User.authenticate_from_cookie(id, key)
+        session[:user_id] = user.id
+      end
+    end
+  end
   
   # Checks that user is logged in
   def authorize
