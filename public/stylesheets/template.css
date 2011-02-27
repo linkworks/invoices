@@ -308,3 +308,15 @@ th.align-center
 {
   text-align: center;
 }
+
+/* Invoice Form */
+input.quantity-input { width: 30px; text-align: right; }
+input.description-input { width: 400px; }
+input.unit_cost-input { width: 75px; text-align: right; }
+input.discount-input { width: 30px; text-align: right; }
+
+/* Fix for rails' adding divs to field with errors */
+.field_with_errors
+{
+  display: inline;
+}

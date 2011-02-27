@@ -74,6 +74,21 @@ en:
       draft: Draft
       sent: Sent
       paid: Paid
+      
+      client_html: Client <small> Select the client you want to bill. </small>
+      status_html: Status <small> Draft, sent or already paid? </small>
+      save_invoice: Save Invoice
+      cancel: Cancel & Go Back
+      confirm_cancel: Are you sure you want to cancel?
+      notes_html: Notes <small> Does anything need clarification? Specify that here! </small>
+      terms_html: Terms <small> Set the terms and conditions for this invoice. </small>
+      
+      quantity: Qty.
+      description: Description
+      unit_cost: Unit Cost
+      discount: Discount
+      total: Total
+      add_item: Add Item
     index:
       id: ID
       client: Client
@@ -84,6 +99,8 @@ en:
       sent: Sent
       date_created: Date of Creation
       actions: Actions
+    new:
+      create_invoice: New Invoice
     
   sessions:
     new:

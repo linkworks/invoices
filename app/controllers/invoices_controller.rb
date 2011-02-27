@@ -27,6 +27,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/new.xml
   def new
     @invoice = Invoice.new
+    @item = Item.new # Fix for error list, which throws exception if item is nil
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,9 +44,9 @@ class InvoicesController < ApplicationController
   # POST /invoices.xml
   def create
     @invoice = Invoice.new(params[:invoice])
-
+    
     respond_to do |format|
-      if @invoice.save
+      if @invoice.validate_client_belongs_to(current_user) and @invoice.save
         format.html { redirect_to(@invoice, :notice => 'Invoice was successfully created.') }
         format.xml  { render :xml => @invoice, :status => :created, :location => @invoice }
       else
@@ -61,7 +62,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
 
     respond_to do |format|
-      if @invoice.update_attributes(params[:invoice])
+      if @invoice.validate_client_belongs_to(current_user) and @invoice.update_attributes(params[:invoice])
         format.html { redirect_to(@invoice, :notice => 'Invoice was successfully updated.') }
         format.xml  { head :ok }
       else

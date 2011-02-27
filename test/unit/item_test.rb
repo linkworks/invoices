@@ -56,8 +56,8 @@ class ItemTest < ActiveSupport::TestCase
     item.discount = -1
     assert item.invalid?, "discount less than 0 should be invalid"
     
-    item.discount = 100
-    assert item.invalid?, "discount bigger than 1 should be invalid"
+    item.discount = 10000
+    assert item.invalid?, "#discount bigger than 100 should be invalid"
   end
   
   test "should not create item without invoice" do
@@ -69,14 +69,17 @@ class ItemTest < ActiveSupport::TestCase
     assert_equal 1_000, item.total_price
     
     item.unit_cost = 10_000
-    item.discount = 0.5
+    item.discount = 50 # In percentage!
     assert_equal 5_000, item.total_price
     
     item.quantity = 2
     assert_equal 10_000, item.total_price
     
     item.quantity = 1
-    item.discount = 0.75
+    item.discount = 75
     assert_equal 2_500, item.total_price
+    
+    item = Item.new
+    assert_equal 0, item.total_price
   end
 end

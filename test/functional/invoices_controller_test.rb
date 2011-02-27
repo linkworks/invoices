@@ -3,6 +3,22 @@ require 'test_helper'
 class InvoicesControllerTest < ActionController::TestCase
   setup do
     @invoice = invoices(:one)
+    
+    @invoice_with_items = invoices(:one).attributes
+    @invoice_with_items[:items_attributes] = {
+      1 => {
+        :description => "Lorem Ipsum",
+        :unit_cost => 1_000,
+        :quantity => 1,
+        :discount => 0,
+        :nested => 'true'
+      }
+    }
+    
+    @invoice_with_incorrect = {
+      :client_id => clients(:acme).id,
+      :status => 'draft'
+    }
   end
 
   test "should get index" do
@@ -20,15 +36,24 @@ class InvoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # FIXME: This test will fail until invoices controller manages creation of items
   test "should create invoice" do
     login(:normal_user)
     
     assert_difference('Invoice.count') do
-      post :create, :invoice => @invoice.attributes
+      post :create, :invoice => @invoice_with_items
     end
 
     assert_redirected_to invoice_path(assigns(:invoice))
+  end
+  
+  test "should not create invoice with invalid client_id for current user" do
+    login(:normal_user)
+    
+    assert_difference('Invoice.count', 0) do
+      post :create, :invoice => @invoice_with_incorrect
+    end
+    
+    assert_response :success
   end
 
   test "should show invoice" do
