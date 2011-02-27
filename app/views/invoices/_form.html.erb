@@ -38,7 +38,7 @@
         </tr>
       </tfoot>
       <tbody>
-        <% @invoice.items << Item.new if @invoice.new_record? and @invoice.items.empty? %>
+        <% @invoice.items << Item.new(:quantity => 0, :unit_cost => 0, :discount => 0) if @invoice.new_record? and @invoice.items.empty? %>
         <% @invoice.items.each do |item| %>
           <%= f.fields_for :items, item do |ff| %>
             <%= render item, :ff => ff, :new_record => @invoice.new_record? %>

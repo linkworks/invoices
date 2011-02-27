@@ -25,12 +25,13 @@ class Invoice < ActiveRecord::Base
   
   def validate_client_belongs_to(user)
     unless user.company.clients.find(self.client_id)
-      self.errors.add(:client_id, "That client is not yours!") 
+      self.errors.add(:client_id, "is invalid.") 
       false
     else
       true
     end
   rescue ActiveRecord::RecordNotFound
+    self.errors.add(:client_id, "is invalid.") 
     false
   end
 end
