@@ -31,9 +31,9 @@
     <td class="align-right"><%= number_to_currency invoice.total %></td>
     <td><%= l(invoice.created_at, :format => :short) %>
     <td>
-      <%= link_to 'Show', invoice %>
-      <%= link_to 'Edit', edit_invoice_path(invoice) %>
-      <%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to t('.show'), invoice %>
+      <%= link_to t('.edit'), edit_invoice_path(invoice) %>
+      <%= link_to t('.destroy'), invoice, :confirm => t('.confirm_delete'), :method => :delete %>
     </td>
   </tr>
 <% end %>
