@@ -57,4 +57,16 @@ class InvoiceTest < ActiveSupport::TestCase
   test "should return total" do
     assert_equal items(:one).total_price, invoices(:one).total
   end
+  
+  test "deleting invoice should delete items too" do
+    invoice = Invoice.new(:status => 'draft', :client_id => clients(:one).id)
+    assert invoice.save
+    
+    item = Item.new(:description => 'Lorem Ipsum', :unit_cost => 1, :quantity => 1, :discount => 0, :invoice_id => invoice.id)
+    assert item.save
+    
+    invoice.destroy
+    
+    assert ! Item.exists?(item.id)
+  end
 end
