@@ -51,7 +51,7 @@ protected
   # Blackholes request only if on production. If on development or test, shows an :alert
   def blackhole
     if Rails.env.production?
-      raise ActionController::RoutingError.new('Not Found')
+      not_found
     else
       #flash[:alert] = 'This request was blackholed!'
       #logger.info "Request blackholed"
@@ -60,6 +60,10 @@ protected
   end
   
   def blackhole!
-    raise ActionController::RoutingError.new('Not Found')
+    not_found
+  end
+  
+  def not_found
+    render(:file => "#{Rails.root.to_s}/public/404.html", :layout => false, :status => 404)
   end
 end

@@ -62,6 +62,13 @@ class InvoicesControllerTest < ActionController::TestCase
     get :show, :id => @invoice.to_param
     assert_response :success
   end
+  
+  test "should not show invoice if user does not own it" do
+    login(:acme)
+    
+    get :show, :id => @invoice.to_param
+    assert_response :missing
+  end
 
   test "should get edit" do
     login(:normal_user)
@@ -69,12 +76,26 @@ class InvoicesControllerTest < ActionController::TestCase
     get :edit, :id => @invoice.to_param
     assert_response :success
   end
+  
+  test "should not get edit if invoice does not belong to user" do
+    login(:acme)
+    
+    get :edit, :id => @invoice.to_param
+    assert_response :missing
+  end
 
   test "should update invoice" do
     login(:normal_user)
     
     put :update, :id => @invoice.to_param, :invoice => @invoice.attributes
     assert_redirected_to invoice_path(assigns(:invoice))
+  end
+  
+  test "should not update invoice that does not belong to user" do
+    login(:acme)
+    
+    put :update, :id => @invoice.to_param, :invoice => @invoice.attributes
+    assert_response :missing
   end
 
   test "should destroy invoice" do
@@ -85,5 +106,33 @@ class InvoicesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to invoices_path
+  end
+  
+  test "should not destroy invoice if user does not own it" do
+    login(:acme)
+    
+    delete :destroy, :id => @invoice.to_param
+    
+    assert_response :missing
+  end
+  
+  test "should be redirected to login page if not logged in on all actions" do
+    get :index
+    assert_redirected_to show_login_path, "was not redirected on index"
+    
+    get :show, :id => @invoice.to_param
+    assert_redirected_to show_login_path, "was not redirected on show"
+    
+    get :edit, :id => @invoice.to_param
+    assert_redirected_to show_login_path, "was not redirected on edit"
+    
+    post :create, :invoice => @invoice.attributes
+    assert_redirected_to show_login_path, "was not redirected on create"
+    
+    put :update, :id => @invoice.to_param, :invoice => @invoice.attributes
+    assert_redirected_to show_login_path, "was not redirected on update"
+    
+    delete :destroy, :id => @invoice.to_param
+    assert_redirected_to show_login_path, "was not redirected on destroy"
   end
 end

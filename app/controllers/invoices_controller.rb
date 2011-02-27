@@ -15,8 +15,10 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.xml
   def show
-    @invoice = Invoice.find(params[:id])
-
+    @invoice = Invoice.where('id = ? and client_id in (?)', params[:id], current_user.company.clients.all.collect(&:id)).first
+    
+    not_found and return unless @invoice
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @invoice }
@@ -37,7 +39,8 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/1/edit
   def edit
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.where('id = ? and client_id in (?)', params[:id], current_user.company.clients.all.collect(&:id)).first
+    not_found and return unless @invoice
   end
 
   # POST /invoices
@@ -59,7 +62,9 @@ class InvoicesController < ApplicationController
   # PUT /invoices/1
   # PUT /invoices/1.xml
   def update
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.where('id = ? and client_id in (?)', params[:id], current_user.company.clients.all.collect(&:id)).first
+    
+    not_found and return unless @invoice
 
     respond_to do |format|
       if @invoice.validate_client_belongs_to(current_user) and @invoice.update_attributes(params[:invoice])
@@ -75,7 +80,8 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.xml
   def destroy
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.where('id = ? and client_id in (?)', params[:id], current_user.company.clients.all.collect(&:id)).first
+    not_found and return unless @invoice
     @invoice.destroy
 
     respond_to do |format|
