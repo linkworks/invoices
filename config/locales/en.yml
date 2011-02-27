@@ -8,6 +8,10 @@ en:
   sign_up_success: You've successfully signed up! You can now login.
   already_signed_in: You're already signed in.
   
+  invoice_created: Invoice was successfully created.
+  invoice_deleted: Invoice was deleted successfully.
+  invoice_updated: Invoice was successfully updated.
+  
   activerecord:
     models:
       company: Company

@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   def index
     #@invoices = Invoice.all
     @invoices = Invoice.where('client_id in (?)', current_user.company.clients.all.collect(&:id)) \
-                       .paginate(:page => params[:page], :per_page => 10)
+                       .paginate(:page => params[:page], :per_page => 10, :order => 'created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,7 +50,7 @@ class InvoicesController < ApplicationController
     
     respond_to do |format|
       if @invoice.validate_client_belongs_to(current_user) and @invoice.save
-        format.html { redirect_to(@invoice, :notice => 'Invoice was successfully created.') }
+        format.html { redirect_to(@invoice, :notice => t('.invoice_created')) }
         format.xml  { render :xml => @invoice, :status => :created, :location => @invoice }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.validate_client_belongs_to(current_user) and @invoice.update_attributes(params[:invoice])
-        format.html { redirect_to(@invoice, :notice => 'Invoice was successfully updated.') }
+        format.html { redirect_to(@invoice, :notice => t('.invoice_updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,7 +85,7 @@ class InvoicesController < ApplicationController
     @invoice.destroy
 
     respond_to do |format|
-      format.html { redirect_to(invoices_url) }
+      format.html { redirect_to(invoices_url, :notice => t('.invoice_deleted')) }
       format.xml  { head :ok }
     end
   end
