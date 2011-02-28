@@ -201,6 +201,13 @@ th, td {
 	border-top-left-radius:5px;
 }
 
+h1 .right
+{
+  float: right;
+  font-size: 14px;
+  line-height: 40px;
+}
+
 /* Forms */
 
 label {

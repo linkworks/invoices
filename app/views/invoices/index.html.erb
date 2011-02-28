@@ -1,4 +1,9 @@
-<h1>Listing invoices</h1>
+<h1>
+  <%= t('.list_invoices') %>
+  <span class="right">
+    <%= link_to t('.new_invoice'), new_invoice_path %>
+  </span>
+</h1>
 
 <table>
   <thead>
@@ -20,25 +25,22 @@
     </tr>
   </tfoot>
   
-
-<% @invoices.each do |invoice| %>
-  <tr>
-    <td class="align-right"><%= invoice.id %></td>
-    <td><%= link_to invoice.client.name, client_path(invoice.client) %> (<%= mail_to invoice.client.email, 'Email' %>)</td>
-    <td class="invoice-status invoice-status-<%= invoice.status %>">
-      <%= t('.' + invoice.status) %>
-    </td>
-    <td class="align-right"><%= number_to_currency invoice.total %></td>
-    <td><%= l(invoice.created_at, :format => :short) %>
-    <td>
-      <%= link_to t('.show'), invoice %>
-      <%= link_to t('.edit'), edit_invoice_path(invoice) %>
-      <%= link_to t('.destroy'), invoice, :confirm => t('.confirm_delete'), :method => :delete %>
-    </td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @invoices.each do |invoice| %>
+    <tr>
+      <td class="align-right"><%= invoice.id %></td>
+      <td><%= link_to invoice.client.name, client_path(invoice.client) %> (<%= mail_to invoice.client.email, 'Email' %>)</td>
+      <td class="invoice-status invoice-status-<%= invoice.status %>">
+        <%= t('.' + invoice.status) %>
+      </td>
+      <td class="align-right"><%= number_to_currency invoice.total %></td>
+      <td><%= l(invoice.created_at, :format => :short) %>
+      <td>
+        <%= link_to t('.show'), invoice %>
+        <%= link_to t('.edit'), edit_invoice_path(invoice) %>
+        <%= link_to t('.destroy'), invoice, :confirm => t('.confirm_delete'), :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Invoice', new_invoice_path %>
