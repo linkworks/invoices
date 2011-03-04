@@ -14,8 +14,14 @@ class SessionsControllerTest < ActionController::TestCase
   test "should login with remember" do
     post :create, :email => users(:one).email, :password => 'password', :remember_me => true
     assert_response :redirect
+    
+    # Fix cookies
+    # @link http://stackoverflow.com/questions/5097095/testing-signed-cookies-in-rails
+    @request.cookies.merge!(cookies)
+    cookies = ActionDispatch::Cookies::CookieJar.build(@request)
+    
     assert_equal users(:one).id, cookies.signed['remember_id']
-    assert_equal users(:one).remember_key, cookies['remember_key']
+    assert_equal users(:one).remember_key, cookies.signed['remember_key']
   end
   
   test "should not login" do
@@ -40,6 +46,12 @@ class SessionsControllerTest < ActionController::TestCase
     
     delete :destroy
     assert_redirected_to show_login_path
+    
+    # Fix cookies
+    # @link http://stackoverflow.com/questions/5097095/testing-signed-cookies-in-rails
+    @request.cookies.merge!(cookies)
+    cookies = ActionDispatch::Cookies::CookieJar.build(@request)
+    
     assert_not_equal users(:one).id, cookies.signed[:remember_id]
     assert_not_equal users(:one).remember_key, cookies.signed[:remember_key] 
   end
