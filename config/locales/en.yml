@@ -73,6 +73,27 @@ en:
       save_client: Save Client
   
   invoices:
+    show:
+      invoice: Invoice
+      client: Client
+      status: Status
+      draft: Draft
+      sent: Sent
+      paid: Paid
+      
+      quantity: Qty.
+      description: Description
+      unit_cost: Unit Cost
+      discount: Discount
+      total: Total
+      items: Items
+      
+      terms: Terms
+      notes: Notes
+      
+      send: Send Invoice
+      invoices: Back to Invoices
+    
     form:
       select: (select...)
       draft: Draft
