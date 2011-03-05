@@ -9,6 +9,9 @@
   <script type="text/javascript" charset="utf-8">
     $(function(){
       $('#messages').slideDown();
+      setTimeout(function(){
+        $('#messages').slideUp();
+      }, 30000); // 30 seconds
     });
   </script>
 </head>
