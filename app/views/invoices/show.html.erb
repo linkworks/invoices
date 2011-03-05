@@ -60,6 +60,9 @@
 <div class="grid_2">
   <%= button_to t('.send'), '#' if @invoice.status == 'draft' %>
 </div>
+<div class="grid_2">
+  <%= button_to t('.view_pdf'), invoice_path(@invoice, :format => :pdf), :method => :get %>
+</div>
 <div class="grid_4">
   <%= button_to t('.invoices'), invoices_path, :method => :get %>
 </div>

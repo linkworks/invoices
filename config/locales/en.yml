@@ -93,6 +93,7 @@ en:
       
       send: Send Invoice
       invoices: Back to Invoices
+      view_pdf: View PDF
       
       generated_at: Generated
       created_at: Creation date
