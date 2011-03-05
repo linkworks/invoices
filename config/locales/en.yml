@@ -107,7 +107,7 @@ en:
       date_created: Date of Creation
       actions: Actions
       
-      show: Show
+      show: Detail
       edit: Edit
       destroy: Delete
       confirm_delete: Are you sure you want to delete this invoice?
