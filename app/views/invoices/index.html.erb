@@ -37,6 +37,7 @@
       <td><%= l(invoice.created_at, :format => :short) %>
       <td>
         <%= link_to t('.show'), invoice %>
+        <%= link_to t('.pdf'), invoice_path(invoice, :format => :pdf) %>
         <%= link_to t('.edit'), edit_invoice_path(invoice) %>
         <%= link_to t('.destroy'), invoice, :confirm => t('.confirm_delete'), :method => :delete %>
       </td>

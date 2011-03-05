@@ -63,6 +63,13 @@ class InvoicesControllerTest < ActionController::TestCase
     assert_response :success
   end
   
+  #test "should show pdf of invoice" do
+  #  login(:normal_user)
+  #  
+  #  get :show, :format => :pdf, :id => @invoice.to_param
+  #  assert_response :success
+  #end
+  
   test "should not show invoice if user does not own it" do
     login(:acme)
     
