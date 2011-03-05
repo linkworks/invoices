@@ -93,6 +93,10 @@ en:
       
       send: Send Invoice
       invoices: Back to Invoices
+      view_pdf: View PDF
+      
+      generated_at: Generated
+      created_at: Creation date
     
     form:
       select: (select...)
@@ -129,6 +133,7 @@ en:
       actions: Actions
       
       show: Detail
+      pdf: PDF
       edit: Edit
       destroy: Delete
       confirm_delete: Are you sure you want to delete this invoice?

@@ -6,7 +6,7 @@ Invoices::Application.routes.draw do
   end
 
   resources :invoices
-
+  
   resources :clients
 
   resources :companies
