@@ -1,31 +1,39 @@
-<h1>Listing clients</h1>
+<h1>
+  <%= t('.list_clients') %>
+  <span class="right">
+    <%= link_to t('.new_client'), new_client_path %>
+  </span>
+</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Company Name</th>
-    <th>Company</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <thead>
+    <tr>
+      <th width="150">Name</th>
+      <th>Address</th>
+      <th width="200">Company Name</th>
+      <th width="200"></th>
+    </tr>
+  </thead>
+  
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <%= will_paginate @clients %>
+      </td>
+    </tr>
+  </tfoot>  
 
-<% @clients.each do |client| %>
-  <tr>
-    <td><%= client.name %></td>
-    <td><%= client.email %></td>
-    <td><%= client.address %></td>
-    <td><%= client.company_name %></td>
-    <td><%= client.company.name %></td>
-    <td><%= link_to 'Show', client %></td>
-    <td><%= link_to 'Edit', edit_client_path(client) %></td>
-    <td><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @clients.each do |client| %>
+    <tr>
+      <td><%= client.name %> (<%= mail_to client.email, t('.email') %>)</td>
+      <td><%= client.address %></td>
+      <td><%= client.company_name %></td>
+      <td>
+        <%= link_to t('.edit'), edit_client_path(client) %>
+        <%= link_to t('.destroy'), client, :confirm => t('.confirm_delete'), :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Client', new_client_path %>

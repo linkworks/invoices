@@ -18,6 +18,7 @@ class ClientsControllerTest < ActionController::TestCase
     
     get :new
     assert_response :success
+    assert_select 'input#client_company_id[value=?]', /#{users(:normal_user).company.id}/ # This will validate that the hidden company_id is valid, though it doesn't matter really
   end
 
   test "should create client" do
@@ -26,8 +27,27 @@ class ClientsControllerTest < ActionController::TestCase
     assert_difference('Client.count') do
       post :create, :client => @client.attributes
     end
+    
+    assert_equal users(:normal_user).company.id, @client.company.id # Validate that the company_id wasn't tampered with
 
-    assert_redirected_to client_path(assigns(:client))
+    #assert_redirected_to client_path(assigns(:client))
+    assert_redirected_to clients_path
+  end
+  
+  test "should create client even if company_id was tampered with" do
+    login(:normal_user)
+    
+    # Modify client
+    client = @client.attributes
+    client[:company_id] = 4736258 # Somethin mega-random
+    
+    assert_difference("Client.count") do
+      post :create, :client => client
+    end
+    
+    assert_equal users(:normal_user).company.id, @client.company.id # Validate that the company_id wasn't tampered with
+    #assert_redirected_to client_path(assigns(:client))
+    assert_redirected_to clients_path
   end
 
   test "should show client" do
@@ -48,7 +68,25 @@ class ClientsControllerTest < ActionController::TestCase
     login(:normal_user)
     
     put :update, :id => @client.to_param, :client => @client.attributes
-    assert_redirected_to client_path(assigns(:client))
+
+    assert_equal users(:normal_user).company.id, @client.company.id # Validate that the company_id wasn't tampered with
+
+    #assert_redirected_to client_path(assigns(:client))
+    assert_redirected_to clients_path
+  end
+  
+  test "should update client even if company_id was tampered with" do
+    login(:normal_user)
+    
+    # Modify client
+    client = @client.attributes
+    client[:company_id] = 4736258 # Somethin mega-random
+    
+    put :update, :id => @client.to_param, :client => client
+    
+    assert_equal users(:normal_user).company.id, @client.company.id # Validate that the company_id wasn't tampered with
+    #assert_redirected_to client_path(assigns(:client))
+    assert_redirected_to clients_path
   end
 
   test "should destroy client" do

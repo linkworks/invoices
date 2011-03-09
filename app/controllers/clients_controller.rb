@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.xml
   def index
-    @clients = Client.all
+    @clients = current_user.company.clients.paginate(:page => params[:page], :per_page => 10, :order => 'name desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,11 +40,12 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.xml
   def create
+    params[:client][:company_id] = current_user.company.id # This will overwrite the client_id sent in the hidden field
     @client = Client.new(params[:client])
 
     respond_to do |format|
       if @client.save
-        format.html { redirect_to(@client, :notice => 'Client was successfully created.') }
+        format.html { redirect_to(clients_path, :notice => t('.client_updated')) }
         format.xml  { render :xml => @client, :status => :created, :location => @client }
       else
         format.html { render :action => "new" }
@@ -56,11 +57,12 @@ class ClientsController < ApplicationController
   # PUT /clients/1
   # PUT /clients/1.xml
   def update
+    params[:client][:company_id] = current_user.company.id # This will overwrite the client_id sent in the hidden field
     @client = Client.find(params[:id])
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        format.html { redirect_to(@client, :notice => 'Client was successfully updated.') }
+        format.html { redirect_to(clients_path, :notice => t('.client_updated')) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +78,7 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
-      format.html { redirect_to(clients_url) }
+      format.html { redirect_to(clients_url, :notice => t('.client_deleted')) }
       format.xml  { head :ok }
     end
   end

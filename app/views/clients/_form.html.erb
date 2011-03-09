@@ -1,37 +1,40 @@
 <%= form_for(@client) do |f| %>
+  <%= f.hidden_field :company_id, :value => current_user.company.id %>
+  
   <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-      <ul>
+    <div id="error_explanation" class="grid_16">
       <% @client.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <p class="error"><%= msg %></p>
       <% end %>
-      </ul>
     </div>
+    <div class="grid_16"><p><!-- SEPARATOR --></p></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, t('.name') %><br />
+  <div class="grid_8">
+    <%= f.label :name, t('.name') %>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :email, t('.email') %><br />
+  
+  <div class="grid_8">
+    <%= f.label :email, t('.email') %>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :address, t('.address') %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
+
+  <div class="grid_16"><p><!-- SEPARATOR --></p></div>
+  
+  <div class="grid_8">
     <%= f.label :company_name, t('.company_name') %><br />
     <%= f.text_field :company_name %>
   </div>
-  <div class="field">
-    <%= f.label :company_id, t('.company') %><br />
-    <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), :prompt => t('.select') %>
+  
+  <div class="grid_8">
+    <%= f.label :address, t('.address') %><br />
+    <%= f.text_field :address %>
   </div>
-  <div class="actions">
+  
+  <div class="grid_16"><p><!-- SEPARATOR --></p></div>
+  
+  <div class="grid_16">
     <%= f.submit t('.save_client') %>
   </div>
 <% end %>

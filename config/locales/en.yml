@@ -12,6 +12,10 @@ en:
   invoice_deleted: Invoice was deleted successfully.
   invoice_updated: Invoice was successfully updated.
   
+  client_created: Client was successfully created.
+  client_deleted: Client was successfully deleted.
+  client_updated: Client was successfully updated.
+  
   activerecord:
     models:
       company: Company
@@ -67,10 +71,24 @@ en:
       select: (select...)
       name:   Name
       email:  Email Address
-      address: Address
+      address: Company Address
       company_name: Company Name
       company: Company
       save_client: Save Client
+    
+    index:
+      list_clients: Your Clients
+      new_client: New Client
+      email: Email
+      edit: Edit
+      destroy: Delete
+      confirm_delete: Are you sure? This will delete all invoices associated with this client!
+    
+    new:
+      new_client: New Client
+    
+    edit:
+      edit_client: Edit Client
   
   invoices:
     show:
