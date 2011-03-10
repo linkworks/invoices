@@ -1,0 +1,119 @@
+= form_for @invoice do |f|
+  -# Form errors
+  - if @invoice.errors.any?
+    %div#error_explanation.grid_16
+      - @invoice.errors.full_messages.each do |msg|
+        %p.error= msg
+  
+  -# Client selection
+  .grid_8
+    = f.label :client_id, t('.client_html')
+    %br
+    = f.select :client_id, options_from_collection_for_select(current_user.company.clients, :id, :name), :prompt => t('.select')
+  
+  -# Invoice status
+  .grid_8
+    = f.label :status, t('.status_html')
+    %br
+    = f.select :status, ['draft', 'sent', 'paid'].collect { |s| [t('.'+s), s] }
+  
+  = render :partial => "shared/separator"
+  
+  -# Items
+  .grid_16
+    %label= t('.items')
+    %table#items_table
+      %thead
+        %tr
+          %th= t('.quantity')
+          %th= t('.description')
+          %th= t('.unit_cost')
+          %th= t('.discount')
+          %th= t('.total')
+          %th &nbsp;
+      %tfoot
+        %tr
+          %td{:colspan => 6}
+            %button#add_item= t('.add_item')
+      %tbody
+        - @invoice.items << Item.new(:quantity => 0, :unit_cost => 0, :discount => 0) if @invoice.new_record? and @invoice.items.empty?
+        - @invoice.items.each do |item|
+          = f.fields_for :items, item do |ff|
+            = render item, :ff => ff, :new_record => @invoice.new_record?
+  
+  = render :partial => "shared/separator"
+    
+  -# Terms
+  .grid_16
+    = f.label :terms, t('.terms_html')
+    %br
+    = f.text_area :terms, :rows => 2
+  
+  = render :partial => "shared/separator"
+  
+  -# Notes
+  .grid_16
+    = f.label :notes, t('.notes_html')
+    %br
+    = f.text_area :notes, :rows => 2
+    
+  = render :partial => "shared/separator"
+  
+  -# Submission
+  .grid_16
+    = f.submit t('.save_invoice')
+    = link_to t('.cancel'), invoices_path, :confirm => t('.confirm_cancel')
+  
+  -# jQuery Template for items
+  %script#item_template{:type => "text/x-jquery-tmpl"}
+    = render Item.new, :new_record => @invoice.new_record?
+  
+  -# Utility jQuery
+  :javascript
+    $(function(){
+      function get_new_index() {
+        if ($('table#items_table tbody tr:last td:first input').length == 0) {
+          return 0;
+        }
+        else {
+          return parseInt($('table#items_table tbody tr:last td:first input').attr('name').match(/\d+/)[0]) + 1;
+        }
+      }
+    
+      $('#add_item').click(function(){
+        $('#item_template').tmpl({index: get_new_index()}).appendTo('table#items_table tbody');
+        return false;
+      });
+    
+      $('.delete_item').live('click', function(){
+        var context = $(this).parent().parent()
+        if ($('input[name*=_destroy]', context).length == 0) {
+          context.remove(); // If its a new item then simply remove it from the dom
+        }
+        else {
+          context.hide();
+          $('input[name*=_destroy]', context).val('true'); // This will tell the server to delete the record
+        }
+      });
+    
+      // Update totals
+    
+      function update_price(elem) {
+        var context = $(elem).parent().parent()[0].tagName == 'TD' ? $(elem).parent().parent().parent() : $(elem).parent().parent();
+        var quantity = $('.quantity-input', context).val();
+        var unit_cost = $('.unit_cost-input', context).val();
+        var discount = $('.discount-input', context).val();
+      
+        // Check they're numbers
+        quantity = isNaN(quantity) ? 0 : quantity;
+        unit_cost = isNaN(unit_cost) ? 0 : unit_cost;
+        discount = isNaN(discount) ? 0 : discount;
+      
+        // Update
+        $('.total-price', context).html('$ ' + (quantity * unit_cost * (1 - (discount / 100.0))));
+      }
+    
+      $('.quantity-input').live('keyup', function(){ update_price(this); });
+      $('.unit_cost-input').live('keyup', function(){ update_price(this); });
+      $('.discount-input').live('keyup', function(){ update_price(this); });
+    });
