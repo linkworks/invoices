@@ -1,0 +1,27 @@
+- if defined?(ff)
+  %tr
+    %td= ff.text_field :quantity, :class => 'quantity-input'
+    %td= ff.text_field :description, :class => 'description-input'
+    %td
+      $
+      = ff.text_field :unit_cost, :class => 'unit_cost-input'
+    %td= ff.text_field :discount, :class => 'discount-input'
+    %td
+      %span.total-price= number_to_currency item.total_price
+    %td
+      %a.delete_item{:href => "javascript:;"}= image_tag 'icons/delete.png', :border => 0
+      = ff.hidden_field :_destroy, :value => 'false'
+      = ff.hidden_field :nested, :value => 'true' if new_record
+- else
+  %tr
+    %td= text_field_tag 'invoice[items_attributes][${index}][quantity]', 0, :class => 'quantity-input', :id => 'invoice_items_attributes_${index}_quantity'
+    %td= text_field_tag 'invoice[items_attributes][${index}][description]', nil, :class => 'description-input', :id => 'invoice_items_attributes_${index}_description'
+    %td
+      $
+      = text_field_tag 'invoice[items_attributes][${index}][unit_cost]', 0, :class => 'unit_cost-input', :id => 'invoice_items_attributes_${index}_unit_cost'
+    %td= text_field_tag 'invoice[items_attributes][${index}][discount]', 0, :class => 'discount-input', :id => 'invoice_items_attributes_${index}_discount'
+    %td
+      %span.total-price= number_to_currency item.total_price
+    %td
+      %a.delete_item{:href => "javascript:;"}= image_tag 'icons/delete.png', :border => 0
+      = hidden_field_tag 'invoice[items_attributes][${index}][nested]', 'true' if new_record
