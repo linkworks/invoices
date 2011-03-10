@@ -177,3 +177,7 @@ en:
   companies:
     edit:
       edit_company: Edit your company
+    form:
+      name: Name
+      address: Address
+      save: Save Changes
