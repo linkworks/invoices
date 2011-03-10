@@ -1,0 +1,46 @@
+.grid_16
+  %h1= t('.login')
+  
+- if @login_error
+  .grid_5 &nbsp;
+  .grid_6
+    %p.error#login_error= t('.login_error_message')
+  .grid_5 &nbsp;
+  .clear
+
+= form_tag do_login_path, :method => :post do
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :email, t('.email')
+    = text_field_tag :email
+  /.grid_5 &nbsp;
+  
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :password, t('.password')
+    = password_field_tag :password
+  /.grid_5 &nbsp;
+
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :remember_me, t('.remember_me')
+    = check_box_tag :remember_me
+  /.grid_5 &nbsp;
+  
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = submit_tag t('.submit')
+    %strong= link_to t('.sign_up'), sign_up_path
+    = link_to t('.recover_password'), 'recover_password'
+  /.grid_5 &nbsp;
+
+:javascript
+  $(function(){
+    $('#email').focus(); // Focus the email field of the form
+  });
