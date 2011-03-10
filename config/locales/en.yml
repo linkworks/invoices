@@ -16,6 +16,8 @@ en:
   client_deleted: Client was successfully deleted.
   client_updated: Client was successfully updated.
   
+  company_updated: Your company was successfully updated.
+  
   activerecord:
     models:
       company: Company
@@ -44,6 +46,7 @@ en:
       invoices: Invoices
       new_invoice: + New Invoice
       clients: Clients
+      edit_company: Edit Company
       
   users:
     form:
@@ -170,3 +173,7 @@ en:
       sign_up: Sign up
       login_error_message: Invalid email or password. Try again.
       remember_me: Remember me
+  
+  companies:
+    edit:
+      edit_company: Edit your company

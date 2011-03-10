@@ -36,6 +36,7 @@
       
       <li class="right"> <%= link_to t('.logout'), logout_path, :method => :delete, :confirm => t('.confirm_logout') %> </li>
       <li class="right"><a href="#">Settings</a></li>
+      <% if current_user.company %><li class="right"> <%= link_to t('.edit_company'), edit_company_path(current_user.company) %> </li><% end %>
     <% else %>
       <li> <%= link_to t('.login'), show_login_path %> </li>
       <li> <%= link_to t('.sign_up'), sign_up_path %> </li>
