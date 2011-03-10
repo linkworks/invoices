@@ -41,14 +41,14 @@
 .grid_16
   = label_tag t('.terms')
   %br
-  = @invoice.terms
+  &= @invoice.terms
   
 = render :partial => "shared/separator"
 
 .grid_16
   = label_tag t('.notes')
   %br
-  = @invoice.notes
+  &= @invoice.notes
   
 = render :partial => "shared/separator"
 
