@@ -1,0 +1,31 @@
+%h1
+  = t('.list_invoices')
+  %span.right= link_to t('.new_invoice'), new_invoice_path
+
+%table
+  %thead
+    %tr
+      %th= t('.id')
+      %th= t('.client')
+      %th= t('.status')
+      %th= t('.amount')
+      %th= t('.date_created')
+      %th= t('.actions')
+  %tfoot
+    %tr
+      %td{:colspan => 6}= will_paginate @invoices
+  %tbody
+    -@invoices.each do |invoice|
+      %tr
+        %td{:ckass => "align-right"}= invoice.id
+        %td
+          = link_to invoice.client.name, client_path(invoice.client)
+          (#{mail_to invoice.client.email, 'Email'})
+        %td{:class => "invoice-status invoice-status-#{invoice.status}"}= t('.' + invoice.status)
+        %td{:class => "align-right"}= number_to_currency(invoice.total)
+        %td= l(invoice.created_at, :format => :short)
+        %td
+          = link_to t('.show'), invoice
+          = link_to t('.pdf'), invoice_path(invoice, :format => :pdf), :target => '_blank'
+          = link_to t('.edit'), edit_invoice_path(invoice)
+          = link_to t('.destroy'), invoice, :confirm => t('.confirm_delete'), :method => :delete

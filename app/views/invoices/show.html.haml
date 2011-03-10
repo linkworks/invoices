@@ -1,0 +1,60 @@
+.grid_16
+  %h1
+    = t('.invoice') + " #" + @invoice.id.to_s
+
+.grid_8
+  = label_tag t('.client')
+  = @invoice.client.name
+  %br
+  = @invoice.client.company_name
+  %br
+  = @invoice.client.address
+
+.grid_8
+  = label_tag t('.status')
+  %span{:class => "invoice-status invoice-status-#{@invoice.status}"}= t('.' + @invoice.status) 
+
+= render :partial => "shared/separator"
+
+.grid_16
+  %label= t('.items')
+  %table#items_table
+    %thead
+      %tr
+        %th{:width => 40}=  t('.quantity')
+        %th{:width => 410}= t('.description')
+        %th{:width => 85}=  t('.unit_cost')
+        %th{:width => 40}=  t('.discount')
+        %th=                t('.total')
+    %tfoot
+      %tr
+        %td.align-right.invoice-total{:colspan => 6}
+          %strong
+            = t('.total')
+            = number_to_currency(@invoice.total)
+    %tbody
+      - @invoice.items.each do |item|
+        = render :partial => "static_item", :locals => {:item => item}
+
+= render :partial => "shared/separator"
+
+.grid_16
+  = label_tag t('.terms')
+  %br
+  = @invoice.terms
+  
+= render :partial => "shared/separator"
+
+.grid_16
+  = label_tag t('.notes')
+  %br
+  = @invoice.notes
+  
+= render :partial => "shared/separator"
+
+.grid_2
+  = button_to t('.send'), '#' if @invoice.status == 'draft'
+.grid_2
+  = button_to t('.view_pdf'), invoice_path(@invoice, :format => :pdf), :method => :get
+.grid_4
+  = button_to t('.invoices'), invoices_path, :method => :get
