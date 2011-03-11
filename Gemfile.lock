@@ -43,6 +43,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nifty-generators (0.4.5)
     polyglot (0.3.1)
     prawn (0.8.4)
       prawn-core (>= 0.8.4, < 0.9)
@@ -85,6 +86,7 @@ PLATFORMS
 DEPENDENCIES
   haml
   jquery-rails (>= 0.2.6)
+  nifty-generators
   prawn
   rails (= 3.0.4)
   sqlite3-ruby
