@@ -1,0 +1,33 @@
+= form_for @client do |f|
+  = f.hidden_field :company_id, :value => current_user.company.id
+  
+  - if @client.errors.any?
+    #error_explanation.grid_16
+      - @client.errors.full_messages.each do |msg|
+        %p.error= msg
+    = render :partial => "shared/separator"
+  
+  .grid_8
+    = f.label :name, t('.name')
+    = f.text_field :name
+    
+  .grid_8
+    = f.label :email, t('.email')
+    / FIXME: Email field?
+    = f.email_field :email
+  
+  = render :partial => "shared/separator"
+  
+  .grid_8
+    = f.label :company_name, t('.company_name')
+    = f.text_field :company_name
+  
+  .grid_8
+    = f.label :address, t('.address')
+    = f.text_field :address
+  
+  = render :partial => "shared/separator"
+  
+  .grid_16
+    = f.submit t('.save_client')
+    = link_to t('.cancel'), clients_path, :confirm => t('.confirm_cancel')

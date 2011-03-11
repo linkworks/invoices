@@ -78,6 +78,9 @@ en:
       company_name: Company Name
       company: Company
       save_client: Save Client
+      
+      cancel: 'Cancel & Go back'
+      confirm_cancel: Are you sure you want to cancel?
     
     index:
       list_clients: Your Clients
