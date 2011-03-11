@@ -19,8 +19,9 @@
       %tr
         %td
           = client.name
-          \/
-          = mail_to client.email, t('.email')        
+          - unless client.email.empty?
+            \/
+            = mail_to client.email, t('.email')        
         %td= client.company_name
         %td= client.address
         %td
