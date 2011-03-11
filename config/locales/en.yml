@@ -86,6 +86,10 @@ en:
       edit: Edit
       destroy: Delete
       confirm_delete: Are you sure? This will delete all invoices associated with this client!
+      
+      name: Name
+      address: Address
+      company_name: Company Name
     
     new:
       new_client: New Client

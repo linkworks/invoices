@@ -1,0 +1,28 @@
+%h1
+  = t('.list_clients')
+  %span.right= link_to t('.new_client'), new_client_path
+
+%table
+  %thead
+    %tr
+      %th{:width => 150}= t('.name')
+      %th{:width => 200}= t('.company_name')
+      %th=                t('.address')
+      %th{:width => 200}
+  
+  %tfoot
+    %tr
+      %td{:colspan => 6}= will_paginate @clients
+  
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td
+          = client.name
+          \/
+          = mail_to client.email, t('.email')        
+        %td= client.company_name
+        %td= client.address
+        %td
+          = link_to t('.edit'), edit_client_path(client)
+          = link_to t('.destroy'), client, :confirm => t('.confirm_delete'), :method => :delete
