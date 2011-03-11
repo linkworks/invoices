@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    not_found and return # Inactive for the moment
     @users = User.all
 
     respond_to do |format|
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+    not_found and return # Inactive for the moment
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
+    not_found and return # Inactive for the moment
     if Company.all.empty?
       redirect_to new_company_path
     else
@@ -42,12 +45,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    not_found and return # Inactive for the moment
     @user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.xml
   def create
+    not_found and return # Inactive for the moment
     @user = User.new(params[:user])
 
     respond_to do |format|
@@ -64,6 +69,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    not_found and return # Inactive for the moment
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -80,6 +86,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+    not_found and return # Inactive for the moment
     @user = User.find(params[:id])
     @user.destroy
 
