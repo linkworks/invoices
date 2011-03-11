@@ -1,0 +1,53 @@
+.grid_16
+  %h1= t('.sign_up')
+
+- if @user.errors.any? or @company.errors.any?
+  .grid_5 &nbsp;
+  #error_explanation.grid_6
+    - @user.errors.full_messages.each do |msg|
+      %p.error= msg
+    - @company.errors.full_messages.each do |msg|
+      %p.error= msg
+  = render :partial => "shared/separator"
+
+
+= form_tag public_user_create_path do
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :email, t('.email_html')
+    = email_field_tag :email, @user.email
+    
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :password, t('.password_html')
+    = password_field_tag :password
+
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :password_confirmation, t('.password_confirmation_html')
+    = password_field_tag :password_confirmation
+
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :company_name, t('.company_name_html')
+    = text_field_tag :company_name, @company.name
+
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = label_tag :company_address, t('.company_address_html')
+    = text_field_tag :company_address, @company.address
+
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = submit_tag t('.sign_up')
+    = link_to t('.login'), show_login_path

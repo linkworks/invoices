@@ -1,0 +1,6 @@
+%tr
+  %td.align-right= item.quantity
+  %td&= item.description
+  %td.align-right= number_to_currency(item.unit_cost)
+  %td.align-right= item.discount.to_s + "%"
+  %td.align-right= number_to_currency item.total_price

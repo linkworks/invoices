@@ -1,0 +1,25 @@
+= form_for @company do |f|
+  - if @company.errors.any?
+    .grid_5 &nbsp;
+    #error_explanation.grid_6
+      - @company.errors.full_messages.each do |msg|
+        %p.error= msg
+    = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = f.label :name, t('.name')
+    = f.text_field :name
+  
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = f.label :address, t('.address')
+    = f.text_field :address
+  
+  = render :partial => "shared/separator"
+  
+  .grid_5 &nbsp;
+  .grid_6
+    = f.submit t('.save')

@@ -78,6 +78,9 @@ en:
       company_name: Company Name
       company: Company
       save_client: Save Client
+      
+      cancel: 'Cancel & Go back'
+      confirm_cancel: Are you sure you want to cancel?
     
     index:
       list_clients: Your Clients
@@ -86,6 +89,10 @@ en:
       edit: Edit
       destroy: Delete
       confirm_delete: Are you sure? This will delete all invoices associated with this client!
+      
+      name: Name
+      address: Address
+      company_name: Company Name
     
     new:
       new_client: New Client
@@ -177,3 +184,7 @@ en:
   companies:
     edit:
       edit_company: Edit your company
+    form:
+      name: Name
+      address: Address
+      save: Save Changes
