@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title Invoices
+    %title= AppConfig.site_title
     = stylesheet_link_tag ['960', 'template', 'colour', 'messages'] # It was :all before
     = javascript_include_tag ['application', 'jquery', 'rails', 'jquery.tmpl.min.js']
     = csrf_meta_tag
@@ -16,7 +16,7 @@
   
   %body
     %h1#head
-      Invoices
+      = AppConfig.site_title
       - if signed_in?
         %span.right
           = t('.currently_logged_in_as')
