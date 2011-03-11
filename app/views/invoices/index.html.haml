@@ -19,7 +19,7 @@
       %tr
         %td{:ckass => "align-right"}= invoice.id
         %td
-          = link_to invoice.client.name, client_path(invoice.client)
+          = invoice.client.name
           - unless invoice.client.email.empty?
             \/
             = mail_to invoice.client.email, 'Email'

@@ -13,6 +13,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.xml
   def show
+    not_found and return
     @client = Client.find(params[:id])
 
     respond_to do |format|
