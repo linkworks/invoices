@@ -20,7 +20,9 @@
         %td{:ckass => "align-right"}= invoice.id
         %td
           = link_to invoice.client.name, client_path(invoice.client)
-          (#{mail_to invoice.client.email, 'Email'})
+          - unless invoice.client.email.empty?
+            \/
+            = mail_to invoice.client.email, 'Email'
         %td{:class => "invoice-status invoice-status-#{invoice.status}"}= t('.' + invoice.status)
         %td{:class => "align-right"}= number_to_currency(invoice.total)
         %td= l(invoice.created_at, :format => :short)
