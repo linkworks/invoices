@@ -23,7 +23,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 gem 'jquery-rails', '>= 0.2.6'
-gem "will_paginate", "~> 3.0.pre2"
+gem "will_paginate", "~> 3.0"
 gem 'prawn' # To generate pdfs
 gem 'haml'
 
