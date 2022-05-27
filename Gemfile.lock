@@ -52,7 +52,7 @@ GEM
     prawn-core (0.8.4)
     prawn-layout (0.8.4)
     prawn-security (0.8.4)
-    rack (1.2.1)
+    rack (1.2.8)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
